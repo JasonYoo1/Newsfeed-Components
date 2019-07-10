@@ -44,3 +44,10 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+newMenu(menuItems)
+
+function newMenu(array){
+  const menu = document.createElement('div');
+  const unorderedList = document.createElement('ul');
+}

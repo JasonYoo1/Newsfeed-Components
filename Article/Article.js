@@ -34,6 +34,8 @@
 
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
+
+
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
@@ -130,6 +132,8 @@ const data = [
     {three separate paragraph elements}
     <span class='expandButton'></span>
   </div>
+
+
   Hint: You will need to use createElement more than once here!
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
@@ -137,3 +141,45 @@ const data = [
   Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
 */
+
+
+const articles = document.querySelector('.articles')
+
+data.forEach(data => {
+  console.log('hello', data.title)
+  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+})
+
+
+function createArticle(title, date, firstp, secondp, thirdp){
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleParaOne = document.createElement('p')
+  const articleParaTwo = document.createElement('p')
+  const articleParaThree = document.createElement('p')
+  const buttonExpandOpen = document.createElement('span');
+
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(buttonExpandOpen);
+  article.appendChild(articleParaOne);
+  article.appendChild(articleParaTwo);
+  article.appendChild(articleParaThree);
+
+  article.classList.add('article')
+  articleDate.classList.add('date')
+  buttonExpandOpen.classList.add('expandButton')
+
+
+  buttonExpandOpen.textContent = 'Expand'
+  articleDate.textContent = date
+  articleTitle.textContent = title
+
+
+  buttonExpandOpen.addEventListener('click', event =>{
+    console.log('click', event.target)
+    buttonOpen.classList.toggle(articleParaOne)
+  })
+  return article
+}
