@@ -145,13 +145,14 @@ const data = [
 
 const articles = document.querySelector('.articles')
 
-data.forEach(data => {
+data.forEach(articleObj => {
   console.log('hello', data.title)
-  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph, data.secondParagraph, data.thirdParagraph))
+  const article = createArticle(articleObj);
+  articles.appendChild(article)
 })
 
 
-function createArticle(title, date, firstp, secondp, thirdp){
+function createArticle(articleObj){
   const article = document.createElement('div');
   const articleTitle = document.createElement('h2');
   const articleDate = document.createElement('p');
@@ -172,14 +173,17 @@ function createArticle(title, date, firstp, secondp, thirdp){
   buttonExpandOpen.classList.add('expandButton')
 
 
-  buttonExpandOpen.textContent = 'Expand'
-  articleDate.textContent = date
-  articleTitle.textContent = title
+  buttonExpandOpen.textContent = 'Expand';
+  articleDate.textContent = articleObj.date;
+  articleTitle.textContent = articleObj.title;
+  articleParaOne.textContent = articleObj.firstParagraph;
+  articleParaTwo.textContent = articleObj.secondParagraph;
+  articleParaThree.textContent = articleObj.thirdParagraph;
 
 
-  buttonExpandOpen.addEventListener('click', event =>{
+  buttonExpandOpen.addEventListener('click', () =>{
     console.log('click', event.target)
-    buttonOpen.classList.toggle(articleParaOne)
+    article.classList.toggle('article-open');
   })
   return article
 }
